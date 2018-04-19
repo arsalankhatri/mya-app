@@ -1,0 +1,26 @@
+<p>
+  staticcomponent works!
+</p>
+<div class="container">
+  <h1>{{title}}</h1>
+  <div class="grid">
+    <div>
+      <h2>My Contacts</h2>
+      <ul>
+        <li *ngFor="let contact of contacts">
+          {{contact.id}} {{contact.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{{service.data}}
+<button (click)="adddata()">Add</button>
+<query-builder class="margin30" [data]="query" [config]="config"></query-builder>
+<div class="margin30">
+  <textarea >{{query | json}}</textarea>
+<pre *ngIf="query.rules.length>0">{{query.rules[0].field+' '+query.rules[0].operator+' '+query.rules[0].value +' '+ query.condition}}</pre>
+{{stringdata}}
+</div>
+

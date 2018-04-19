@@ -1,0 +1,77 @@
+<p>
+  {{actual}}
+</p>
+
+<div class="container">
+<form [formGroup]="myform" novalidate (ngSubmit)="onSubmit()">
+  <fieldset formGroupName="name">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text"
+             class="form-control"
+             formControlName="firstName">
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text"
+             class="form-control"
+             formControlName="lastName">
+    </div>
+  </fieldset>
+
+  <div class="form-group"
+  [ngClass]="{
+    'has-success': email.value!='' && email.valid && (email.touched || email.dirty) ,
+    'has-danger': email.value!='' && email.invalid  && (email.touched || email.dirty)
+  }">
+    <label>Email</label>
+    <input type="email"
+           class="form-control"
+           formControlName="email">
+          
+<div class="form-control-feedback"
+*ngIf="email.value!='' && email.errors && (email.dirty || email.touched)">
+<p *ngIf="email.errors.required" >Email is required!</p>
+<p *ngIf="email.errors.pattern" >Email must contain at least the @ character</p>
+<p *ngIf="email.errors.emailDomain" >Email must contain at @cloudcall.com</p>
+
+</div>
+
+           <pre>Dirty? {{email.dirty}}</pre>
+           <pre>Pristine? {{email.pristine}}</pre>
+           <pre>Touched? {{email.touched}}</pre>
+           <pre>UnTouched? {{email.untouched}}</pre>
+           <pre>Valid? {{email.valid}}</pre>
+           <pre>Invalid? {{email.invalid}}</pre>
+ 
+          </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password"
+           class="form-control"
+           formControlName="password">
+  </div>
+
+  <div class="form-group">
+    <label>Language</label>
+    <select class="form-control"  formControlName="language">
+      <option  value="">Please select a language</option>
+      <option *ngFor="let lang of langs" [value]="lang" >{{lang}}</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<pre>{{myform.value|json}}</pre>
+
+
+<h2>Reactive Form</h2>
+<input type="search"
+ class="form-control"  [formControl]="searchField"
+ placeholder="Please enter search term">
+
+ <ul>
+   <li *ngFor="let search of searches">{{search}}</li>
+  </ul>

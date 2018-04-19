@@ -1,0 +1,39 @@
+<p>
+  obcomponent works!
+</p>
+<button (click)="sendrequest()">Click to Send Request</button>
+
+<form class="form-inline">
+  <div class="form-group">
+    <input type="search" class="form-control"
+    placeholder="Enter Search string"
+  [formControl]="searchField">
+  </div>
+
+  <!-- <button type="button"
+  class="btn btn-primary"
+  (click)="doSearch(search.value)">
+Search
+  </button> -->
+
+</form>
+
+<hr/>
+
+<div class="text-center">
+  <p class="lead" *ngIf="loading">Loading...</p>
+</div>
+
+<ul>
+<li *ngFor="let track of results |async">
+  <img src="{{track.thumbnail}}">
+  <a [routerLink]="['/tab',track.artistId]">
+  {{track.name}}
+</a>
+</li>
+
+</ul>
+{{service.data}}
+
+
+<app-staticcomponent></app-staticcomponent>
